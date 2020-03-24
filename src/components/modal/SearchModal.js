@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Modal from '../common/Modal';
 import Button from '../common/Button';
@@ -26,7 +25,7 @@ const SearchModal = ({ history, closer }) => {
 
   const inputChange = e => {
     const { value } = e.target;
-    setValue(state => value);
+    setValue(() => value);
   };
   const submit = () => {
     history.push(`/search?value=${value}`);

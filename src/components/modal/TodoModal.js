@@ -46,11 +46,11 @@ const TodoModal = ({ type, closer, todo }) => {
 
   const titleChange = e => {
     const { value } = e.target;
-    setTitle(title => value);
+    setTitle(() => value);
   };
   const bodyChange = e => {
     const { value } = e.target;
-    setBody(body => value);
+    setBody(() => value);
   };
   const submit = () => {
     const titleError = title.trim() === '';
@@ -71,7 +71,7 @@ const TodoModal = ({ type, closer, todo }) => {
   };
   const showCalendarModal = () => setCalendarModal(true);
   const hideCalendarModal = () => setCalendarModal(false);
-  const submitCalendarModal = nextDDay => setDDay(dDay => nextDDay);
+  const submitCalendarModal = nextDDay => setDDay(() => nextDDay);
 
   return (
     <Modal closer={closer} title={type === 'add' ? '추가' : '수정'}>

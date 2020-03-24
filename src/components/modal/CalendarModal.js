@@ -63,6 +63,16 @@ const StyledSelect = styled.select`
   width: 47.5%;
 `;
 
+const Select = ({ name, value, onChange, options }) => (
+  <StyledSelect name={name} value={value} onChange={onChange}>
+    {options.map(option => (
+      <option key={option} value={option}>
+        {option}
+      </option>
+    ))}
+  </StyledSelect>
+);
+
 const CalendarModal = ({ match, submitModal, closer, dDay }) => {
   const { year, month, day } = match.params;
   const today = new Date();
@@ -80,20 +90,12 @@ const CalendarModal = ({ match, submitModal, closer, dDay }) => {
       12,
       0,
     );
-  const [defaultYear, defaultMonth, defaultDay, defaultHour, defaultMinute] = [
-    date.getFullYear(),
-    date.getMonth() + 1,
-    date.getDate(),
-    date.getHours(),
-    date.getMinutes(),
-  ];
-
   const [nextDDay, setNextDDay] = useState({
-    year: defaultYear,
-    month: defaultMonth,
-    day: defaultDay,
-    hour: defaultHour,
-    minute: defaultMinute,
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    hour: date.getHours(),
+    minute: date.getMinutes(),
   });
 
   const selectChange = e => {
@@ -111,28 +113,18 @@ const CalendarModal = ({ match, submitModal, closer, dDay }) => {
     <Modal closer={closer} title="날짜">
       <Wrapper>
         <div className="select">
-          <StyledSelect
+          <Select
             name="year"
             value={nextDDay.year}
             onChange={selectChange}
-          >
-            {range(2100 - 1960, 1960).map(year => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </StyledSelect>
-          <StyledSelect
+            options={range(2100 - 1960, 1960)}
+          />
+          <Select
             name="month"
             value={nextDDay.month}
             onChange={selectChange}
-          >
-            {range(12, 1).map(month => (
-              <option key={month} value={month}>
-                {month}
-              </option>
-            ))}
-          </StyledSelect>
+            options={range(12, 1)}
+          />
         </div>
         <div className="calendar">
           {range(35, 1).map(day => (
@@ -152,28 +144,18 @@ const CalendarModal = ({ match, submitModal, closer, dDay }) => {
           ))}
         </div>
         <div className="select">
-          <StyledSelect
+          <Select
             name="hour"
             value={nextDDay.hour}
             onChange={selectChange}
-          >
-            {range(24).map(hour => (
-              <option key={hour} value={hour}>
-                {hour}
-              </option>
-            ))}
-          </StyledSelect>
-          <StyledSelect
+            options={range(24)}
+          />
+          <Select
             name="minute"
             value={nextDDay.minute}
             onChange={selectChange}
-          >
-            {range(60).map(minute => (
-              <option key={minute} value={minute}>
-                {minute}
-              </option>
-            ))}
-          </StyledSelect>
+            options={range(60)}
+          />
         </div>
         <Button width="100%" height="3rem" onClick={submit}>
           <GoCheck size="1.5rem" />
