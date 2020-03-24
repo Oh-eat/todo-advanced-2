@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import getActiveYears from '../../lib/getActiveYears';
 import getYearArray from '../../lib/getYearArray';
 import {
@@ -8,10 +7,8 @@ import {
   todoViewerGridBlock,
   values,
 } from '../../lib/style';
+import TodoNav from './TodoNav';
 import YearViewerItem from './YearViewerItem';
-import Nav from '../common/Nav';
-import Button from '../common/Button';
-import Spacer from '../common/Spacer';
 
 const YearViewerWrapper = styled.div`
   ${todoViewerWrapper}
@@ -35,15 +32,7 @@ const YearViewer = ({ todos }) => {
 
   return (
     <YearViewerWrapper>
-      <Nav>
-        <Button rectangle size="2rem" onClick={yearPrev}>
-          <MdNavigateBefore />
-        </Button>
-        <Spacer width="2rem" />
-        <Button rectangle size="2rem" onClick={yearNext}>
-          <MdNavigateNext />
-        </Button>
-      </Nav>
+      <TodoNav yearPrev={yearPrev} yearNext={yearNext} />
       <YearViewerBlock>
         {getYearArray(year).map(year => (
           <YearViewerItem key={year} year={year} empty={!activeYears[year]} />
