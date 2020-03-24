@@ -1,13 +1,13 @@
 import React from 'react';
-import Wrapper from '../components/common/Wrapper';
+import BodyWrapper from '../components/common/BodyWrapper';
 import TodoToolbar from '../components/todo/TodoToolbar';
 
 const BaseViewPage = ({ children }) => {
   return (
-    <Wrapper>
+    <BodyWrapper>
       <TodoToolbar />
       {children}
-    </Wrapper>
+    </BodyWrapper>
   );
 };
 

@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { values } from '../../lib/style';
 
-const WrapperBlock = styled.div`
+const BodyWrapperBlock = styled.div`
   display: flex;
   flex-direction: column;
   height: calc(100% - ${values.header.height});
-  width: 1024px;
+  width: calc(1024px - 4rem);
   margin: auto;
 
   @media (max-width: 1024px) {
@@ -16,8 +16,8 @@ const WrapperBlock = styled.div`
   }
 `;
 
-const Wrapper = ({ children }) => {
-  return <WrapperBlock>{children}</WrapperBlock>;
+const BodyWrapper = ({ children }) => {
+  return <BodyWrapperBlock>{children}</BodyWrapperBlock>;
 };
 
-export default Wrapper;
+export default BodyWrapper;
