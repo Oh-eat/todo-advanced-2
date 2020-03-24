@@ -9,6 +9,7 @@ import getActiveDays from '../../lib/getActiveDays';
 import DayViewerItem from './DayViewerItem';
 import getLastDay from '../../lib/getLastDay';
 import TodoNav from './TodoNav';
+import range from '../../lib/range';
 
 const DayViewerWrapper = styled.div`
   ${todoViewerWrapper}
@@ -21,25 +22,23 @@ const DayViewerBlock = styled.div`
   height: calc(100% - ${values.nav.height});
 `;
 
-const MonthViewer = ({ history, year, month, todos }) => {
+const MonthViewer = ({ year, month, todos }) => {
   const activeDays = getActiveDays(todos, year, month);
 
   return (
     <DayViewerWrapper>
       <TodoNav year={year} month={month} />
       <DayViewerBlock>
-        {[...Array(35).keys()]
-          .map(i => i + 1)
-          .map(day => (
-            <DayViewerItem
-              key={day}
-              year={year}
-              month={month}
-              day={day}
-              empty={!activeDays[day]}
-              hidden={day > getLastDay(year, month)}
-            />
-          ))}
+        {range(35, 1).map(day => (
+          <DayViewerItem
+            key={day}
+            year={year}
+            month={month}
+            day={day}
+            empty={!activeDays[day]}
+            hidden={day > getLastDay(year, month)}
+          />
+        ))}
       </DayViewerBlock>
     </DayViewerWrapper>
   );
