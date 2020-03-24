@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Wrapper from '../components/common/Wrapper';
-import TodoToolbar from '../components/todo/TodoToolbar';
+import BaseViewPage from './BaseViewPage';
 import DayViewer from '../components/todo/DayViewer';
 
 const DayViewPage = ({ match }) => {
@@ -9,14 +8,13 @@ const DayViewPage = ({ match }) => {
   const todos = useSelector(({ todos }) => todos);
 
   return (
-    <Wrapper>
-      <TodoToolbar />
+    <BaseViewPage>
       <DayViewer
         year={parseInt(year, 10)}
         month={parseInt(month, 10)}
         todos={todos}
       />
-    </Wrapper>
+    </BaseViewPage>
   );
 };
 

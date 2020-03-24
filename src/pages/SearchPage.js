@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Wrapper from '../components/common/Wrapper';
-import TodoToolbar from '../components/todo/TodoToolbar';
 import qs from 'qs';
+import BaseViewPage from './BaseViewPage';
 import SearchViewer from '../components/search/SearchViewer';
 
 const SearchPage = ({ location }) => {
@@ -10,10 +9,9 @@ const SearchPage = ({ location }) => {
   const todos = useSelector(({ todos }) => todos);
 
   return (
-    <Wrapper>
-      <TodoToolbar />
+    <BaseViewPage>
       <SearchViewer todos={todos} value={value} />
-    </Wrapper>
+    </BaseViewPage>
   );
 };
 
